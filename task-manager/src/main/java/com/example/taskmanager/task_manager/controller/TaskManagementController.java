@@ -45,7 +45,7 @@ public class TaskManagementController {
             if(Objects.isNull(task)) {
                 return ResponseEntity.status(HttpStatus.OK).body("No Task Found with id " + id);
             }
-            return ResponseEntity.status(HttpStatus.ACCEPTED).body(task);
+            return ResponseEntity.status(HttpStatus.OK).body(task);
         }  catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Runtime Error Occured "+ e.getStackTrace());
         }
@@ -62,6 +62,15 @@ public class TaskManagementController {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No Task Found with id " + id);
             }
             return ResponseEntity.status(HttpStatus.OK).body(updatedTask);
+        }  catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Runtime Error Occured "+ e.getStackTrace());
+        }
+    }
+
+    @GetMapping("tasks")
+    public ResponseEntity<?> getAllTasks() {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(taskManagerService.getTasks());
         }  catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Runtime Error Occured "+ e.getStackTrace());
         }

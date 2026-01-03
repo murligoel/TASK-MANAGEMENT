@@ -1,6 +1,8 @@
 package com.example.taskmanager.task_manager.repository;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -49,6 +51,16 @@ public class TaskManagerRepository {
             return existingTask;
         }
         return null;
+    }
+
+    public List<Task> getAll() {
+        List<Task> tasks = new ArrayList<>();
+
+        for(Long id : taskList.keySet()) {
+            tasks.add(taskList.get(id));
+        }
+
+        return tasks;
     }
 
 }

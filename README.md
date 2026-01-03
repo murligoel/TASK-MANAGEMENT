@@ -13,7 +13,7 @@ Content-Type: application/json
 }
 
 # GET TASK WITH ID
-GET http://localhost:8080/tasks/1
+
 
 # UPDATE TASK WITH ID
 PUT http://localhost:8080/tasks/1
@@ -22,3 +22,6 @@ Content-Type: application/json
 {
   "title": "Edit Finish assignment 1"
 }
+
+# GET ALL TASKS
+GET http://localhost:8080/tasks
