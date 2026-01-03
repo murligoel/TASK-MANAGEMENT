@@ -34,4 +34,8 @@ public class TaskManagerService {
     public List<Task> getTasks() {
         return taskManagerRepository.getAll();
     }
+
+    public Long deleteTaskWithId(String id) {
+        return taskManagerRepository.delete(id);
+    }
 }

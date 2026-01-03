@@ -63,4 +63,13 @@ public class TaskManagerRepository {
         return tasks;
     }
 
+    public Long delete(String id) {
+        Long lId = Long.parseLong(id);
+        if(taskList.containsKey(lId)) {
+            taskList.remove(lId);
+            return lId;
+        }
+        return null;
+    }
+
 }

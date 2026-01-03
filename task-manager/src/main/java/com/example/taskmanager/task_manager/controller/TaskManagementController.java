@@ -43,7 +43,7 @@ public class TaskManagementController {
         try {
             Task task = taskManagerService.getTaskWithId(id);
             if(Objects.isNull(task)) {
-                return ResponseEntity.status(HttpStatus.OK).body("No Task Found with id " + id);
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No Task Found with id " + id);
             }
             return ResponseEntity.status(HttpStatus.OK).body(task);
         }  catch (Exception e) {
@@ -75,4 +75,21 @@ public class TaskManagementController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Runtime Error Occured "+ e.getStackTrace());
         }
     }
+
+    @DeleteMapping("tasks/{id}")
+    public ResponseEntity<?> deleteTask(@PathVariable("id") String id) {
+        if(Objects.isNull(id)){
+            return ResponseEntity.badRequest().body("Id is null");
+        }
+        try {
+            Long taskId = taskManagerService.deleteTaskWithId(id);
+            if(Objects.isNull(taskId)) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No Task Found with id " + id);
+            }
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Task Deleted with ID " + taskId);
+        }  catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Runtime Error Occured "+ e.getStackTrace());
+        }
+    }
+ 
 }
