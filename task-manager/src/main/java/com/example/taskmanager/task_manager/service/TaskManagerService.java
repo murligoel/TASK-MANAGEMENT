@@ -20,4 +20,8 @@ public class TaskManagerService {
         }
         taskManagerRepository.add(task);
     }
+
+    public Task getTaskWithId(String id) {
+        return taskManagerRepository.getTask(id);
+    }
 }
