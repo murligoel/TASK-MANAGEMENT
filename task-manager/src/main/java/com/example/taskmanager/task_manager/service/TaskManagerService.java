@@ -14,14 +14,18 @@ public class TaskManagerService {
     @Autowired
     private TaskManagerRepository taskManagerRepository;
 
-    public void createTask(Task task) {
+    public Task createTask(Task task) {
         if(task.getStatus() == null) {
             task.setStatus(TaskStatus.IN_PROGRESS);
         }
-        taskManagerRepository.add(task);
+        return taskManagerRepository.add(task);
     }
 
     public Task getTaskWithId(String id) {
-        return taskManagerRepository.getTask(id);
+        return taskManagerRepository.get(id);
+    }
+
+    public Task updateTaskWithId(String id, Task task) {
+        return taskManagerRepository.update(id, task);
     }
 }
