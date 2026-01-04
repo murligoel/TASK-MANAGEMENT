@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.when;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -29,6 +30,7 @@ class TaskManagerServiceTest {
     void createTaskSetsDefaultStatusWhenNull() {
         Task task = new Task();
         task.setStatus(null);
+        task.setDueDate(LocalDate.now().plusDays(1));
 
         Task savedTask = new Task();
         savedTask.setStatus(TaskStatus.IN_PROGRESS);
@@ -44,6 +46,7 @@ class TaskManagerServiceTest {
     void createTaskKeepsExistingStatus() {
         Task task = new Task();
         task.setStatus(TaskStatus.DONE);
+        task.setDueDate(LocalDate.now().plusDays(1));
 
         when(taskManagerRepository.add(task)).thenReturn(task);
 

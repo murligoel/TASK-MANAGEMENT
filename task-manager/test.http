@@ -1,1 +1,6 @@
-GET http://localhost:8080/tasks
+PUT http://localhost:8080/tasks/1
+Content-Type: application/json
+
+{
+  "duedate": "Edit Finish assignment 1"
+}
