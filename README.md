@@ -44,8 +44,8 @@ Content-Type: application/json
   "title": "Edit Finish assignment 1"
 }
 
-# GET ALL TASKS
-GET http://localhost:8080/tasks
+# GET ALL TASKS WITH STATUS FILTER AS OPTIONAL PARAM
+GET http://localhost:8080/tasks?status=IN_PROGRESS
 
 # DELETE TASK
 DELETE http://localhost:8080/tasks/1
