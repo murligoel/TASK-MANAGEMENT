@@ -1,6 +1,9 @@
-PUT http://localhost:8080/tasks/1
+POST http://localhost:8080/tasks
 Content-Type: application/json
 
 {
-  "duedate": "Edit Finish assignment 1"
+  "title": "Finish assignment",
+  "description": "Complete the task manager",
+  "dueDate": "2026-01-10",
+  "status": "IN_PROGRESS"
 }
