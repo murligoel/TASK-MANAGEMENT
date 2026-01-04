@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -80,8 +81,14 @@ class TaskManagerRepositoryTest {
 
     @Test
     void getAllReturnsAllStoredTasks() {
-        repository.add(new Task());
-        repository.add(new Task());
+        Task task1 = new Task();
+        task1.setDueDate(LocalDate.now().plusDays(1));
+
+        Task task2 = new Task();
+        task2.setDueDate(LocalDate.now().plusDays(1));
+
+        repository.add(task1);
+        repository.add(task2);
 
         List<Task> tasks = repository.getAll();
 

@@ -1,6 +1,7 @@
 package com.example.taskmanager.task_manager.repository;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
@@ -63,6 +64,8 @@ public class TaskManagerRepository {
             }
         }
 
+        tasks.sort(Comparator.comparing(Task::getDueDate));
+
         return tasks;
     }
 
@@ -72,6 +75,8 @@ public class TaskManagerRepository {
         for(Long id : taskList.keySet()) {
             tasks.add(taskList.get(id));
         }
+
+        tasks.sort(Comparator.comparing(Task::getDueDate));
 
         return tasks;
     }
