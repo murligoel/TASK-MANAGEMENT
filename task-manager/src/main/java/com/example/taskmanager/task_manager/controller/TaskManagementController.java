@@ -56,6 +56,9 @@ public class TaskManagementController {
         if(Objects.isNull(id)){
             return ResponseEntity.badRequest().body("Id is null");
         }
+        if(Objects.isNull(task)) {
+            return ResponseEntity.badRequest().body("Task is null");
+        }
         try {
             Task updatedTask = taskManagerService.updateTaskWithId(id, task);
             if(Objects.isNull(updatedTask)) {
