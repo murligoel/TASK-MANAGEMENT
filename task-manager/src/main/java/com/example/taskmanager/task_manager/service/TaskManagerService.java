@@ -43,6 +43,10 @@ public class TaskManagerService {
         return taskManagerRepository.update(id, task);
     }
 
+    public List<Task> getTasksWithStatus(TaskStatus status) {
+        return taskManagerRepository.getAllWithStatus(status);
+    }
+
     public List<Task> getTasks() {
         return taskManagerRepository.getAll();
     }

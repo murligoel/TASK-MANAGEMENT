@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.example.taskmanager.task_manager.entity.Task;
 import com.example.taskmanager.task_manager.service.TaskManagerService;
+import com.example.taskmanager.task_manager.util.TaskStatus;
 
 @RestController
 public class TaskManagementController {
@@ -75,8 +76,11 @@ public class TaskManagementController {
     }
 
     @GetMapping("tasks")
-    public ResponseEntity<?> getAllTasks() {
+    public ResponseEntity<?> getAllTasks(@RequestParam(required = false) TaskStatus status) {
         try {
+            if(status != null) {
+                return ResponseEntity.status(HttpStatus.OK).body(taskManagerService.getTasksWithStatus(status));
+            }
             return ResponseEntity.status(HttpStatus.OK).body(taskManagerService.getTasks());
         }  catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Runtime Error Occured "+ e.getStackTrace());

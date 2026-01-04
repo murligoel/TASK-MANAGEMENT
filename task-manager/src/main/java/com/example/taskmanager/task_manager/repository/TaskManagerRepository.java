@@ -9,6 +9,7 @@ import java.util.concurrent.atomic.AtomicLong;
 import org.springframework.stereotype.Repository;
 
 import com.example.taskmanager.task_manager.entity.Task;
+import com.example.taskmanager.task_manager.util.TaskStatus;
 
 @Repository
 public class TaskManagerRepository {
@@ -51,6 +52,18 @@ public class TaskManagerRepository {
             return existingTask;
         }
         return null;
+    }
+
+    public List<Task> getAllWithStatus(TaskStatus taskStatus) {
+        List<Task> tasks = new ArrayList<>();
+
+        for(Long id : taskList.keySet()) {
+            if(taskList.get(id).getStatus().equals(taskStatus)) {
+                tasks.add(taskList.get(id));
+            }
+        }
+
+        return tasks;
     }
 
     public List<Task> getAll() {

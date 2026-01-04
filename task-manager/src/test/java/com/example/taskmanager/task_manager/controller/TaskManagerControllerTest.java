@@ -206,7 +206,7 @@ public class TaskManagerControllerTest {
 
         when(taskManagerService.getTasks()).thenReturn(tasks);
 
-        ResponseEntity<?> response = taskController.getAllTasks();
+        ResponseEntity<?> response = taskController.getAllTasks(null);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(tasks, response.getBody());
@@ -217,7 +217,7 @@ public class TaskManagerControllerTest {
         when(taskManagerService.getTasks())
                 .thenThrow(new RuntimeException("DB error"));
 
-        ResponseEntity<?> response = taskController.getAllTasks();
+        ResponseEntity<?> response = taskController.getAllTasks(null);
 
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
         assertTrue(response.getBody().toString().contains("Runtime Error Occured"));
